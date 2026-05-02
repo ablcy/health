@@ -14,6 +14,24 @@
     --text-primary: #333;
     --text-secondary: #666;
     --border-color: #ddd;
+    --header-bg: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    --footer-bg: #333;
+    --input-bg: #ffffff;
+    --input-border: #ddd;
+    --shadow: rgba(0,0,0,0.1);
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-color: #444;
+    --header-bg: linear-gradient(135deg, #1a5a1a 0%, #1a3a5a 100%);
+    --footer-bg: #1a1a1a;
+    --input-bg: #333;
+    --input-border: #555;
+    --shadow: rgba(0,0,0,0.3);
 }
 
 body {
@@ -21,6 +39,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
@@ -30,10 +49,51 @@ body {
 }
 
 header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: var(--header-bg);
     color: white;
     padding: 40px 0;
     text-align: center;
+    position: relative;
+    transition: background 0.3s;
+}
+
+.header-controls {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.control-group {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.control-btn:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.05);
+}
+
+[data-theme="dark"] .control-btn {
+    background: rgba(0,0,0,0.3);
+    border-color: rgba(255,255,255,0.2);
+}
+
+[data-theme="dark"] .control-btn:hover {
+    background: rgba(0,0,0,0.5);
 }
 
 header h1 {
@@ -46,6 +106,19 @@ header p {
     opacity: 0.9;
 }
 
+.version-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    margin-top: 15px;
+}
+
+[data-theme="dark"] .version-badge {
+    background: rgba(0,0,0,0.3);
+}
+
 main {
     padding: 40px 20px;
 }
@@ -54,8 +127,9 @@ main {
     background: var(--card-bg);
     border-radius: 12px;
     padding: 30px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px var(--shadow);
     margin-bottom: 30px;
+    transition: background 0.3s, box-shadow 0.3s;
 }
 
 .input-section h2 {
@@ -85,10 +159,12 @@ main {
 .form-group input,
 .form-group select {
     padding: 12px;
-    border: 2px solid var(--border-color);
+    border: 2px solid var(--input-border);
     border-radius: 8px;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, background 0.3s;
+    background: var(--input-bg);
+    color: var(--text-primary);
 }
 
 .form-group input:focus,
@@ -134,9 +210,10 @@ main {
     background: var(--card-bg);
     border-radius: 12px;
     padding: 30px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px var(--shadow);
     margin-bottom: 30px;
     text-align: center;
+    transition: background 0.3s;
 }
 
 .bmi-card h3 {
@@ -194,9 +271,10 @@ main {
     background: var(--card-bg);
     border-radius: 12px;
     padding: 25px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px var(--shadow);
     border-left: 4px solid;
     min-height: 100px;
+    transition: background 0.3s;
 }
 
 .rec-card h3 {
@@ -215,6 +293,7 @@ main {
     border-radius: 8px;
     margin-bottom: 10px;
     position: relative;
+    transition: background 0.3s;
 }
 
 .rec-item:last-child {
@@ -243,7 +322,8 @@ main {
     background: var(--card-bg);
     border-radius: 12px;
     padding: 25px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px var(--shadow);
+    transition: background 0.3s;
 }
 
 .sources-section h3 {
@@ -372,6 +452,7 @@ main {
     cursor: pointer;
     transition: all 0.3s;
     font-size: 0.85rem;
+    color: var(--text-primary);
 }
 
 .weekday-tab.active {
@@ -389,6 +470,7 @@ main {
     border-radius: 8px;
     padding: 15px;
     border-left: 4px solid var(--primary-color);
+    transition: background 0.3s;
 }
 
 .meal-header {
@@ -409,9 +491,10 @@ main {
 .meal-subtotal {
     font-size: 0.85rem;
     color: var(--text-secondary);
-    background: white;
+    background: var(--card-bg);
     padding: 5px 10px;
     border-radius: 15px;
+    transition: background 0.3s;
 }
 
 .meal-content {
@@ -420,10 +503,11 @@ main {
 }
 
 .meal-item {
-    background: white;
+    background: var(--card-bg);
     border-radius: 8px;
     padding: 12px;
     border-left: 3px solid var(--primary-color);
+    transition: background 0.3s;
 }
 
 .food-name {
@@ -449,12 +533,13 @@ main {
 
 .data-source-note {
     font-size: 0.8rem;
-    color: #666;
+    color: var(--text-secondary);
     text-align: center;
     padding: 15px;
-    background: #f9f9f9;
+    background: var(--bg-color);
     border-radius: 8px;
     margin-top: 15px;
+    transition: background 0.3s;
 }
 
 .meal-notes {
@@ -483,6 +568,7 @@ main {
 .collapse-toggle h3 {
     margin: 0;
     font-size: 1.2rem;
+    color: var(--text-primary);
 }
 
 .collapse-icon {
@@ -507,16 +593,29 @@ main {
 }
 
 footer {
-    background: #333;
+    background: var(--footer-bg);
     color: white;
     text-align: center;
     padding: 20px 0;
     margin-top: 40px;
+    transition: background 0.3s;
 }
 
 footer p {
     opacity: 0.8;
     font-size: 0.9rem;
+}
+
+.footer-source {
+    font-size: 0.8rem !important;
+    opacity: 0.6 !important;
+    margin-top: 5px;
+}
+
+.version-info {
+    font-size: 0.8rem !important;
+    opacity: 0.5 !important;
+    margin-top: 10px;
 }
 
 @media (max-width: 600px) {
@@ -548,5 +647,10 @@ footer p {
 
     .meal-subtotal {
         font-size: 0.75rem;
+    }
+
+    .header-controls {
+        position: static;
+        margin-bottom: 15px;
     }
 }

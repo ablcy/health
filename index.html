@@ -9,83 +9,95 @@
 <body>
     <header>
         <div class="container">
-            <h1>健康顾问</h1>
-            <p>基于国际权威机构标准的个性化健康建议</p>
+            <div class="header-controls">
+                <div class="control-group">
+                    <button class="control-btn" id="langToggle" title="切换语言 / Switch Language">
+                        <span class="lang-icon">🌐</span>
+                        <span class="lang-text">EN</span>
+                    </button>
+                    <button class="control-btn" id="themeToggle" title="切换主题 / Switch Theme">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
+            </div>
+            <h1 data-lang="header-title">健康顾问</h1>
+            <p data-lang="header-subtitle">基于国际权威机构标准的个性化健康建议</p>
+            <span class="version-badge">v0.0.4</span>
         </div>
     </header>
 
     <main class="container">
         <section class="input-section">
-            <h2>输入您的健康信息</h2>
+            <h2 data-lang="input-title">输入您的健康信息</h2>
             <form id="healthForm">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="gender">性别</label>
+                        <label for="gender" data-lang="label-gender">性别</label>
                         <select id="gender" name="gender" required>
-                            <option value="">请选择</option>
-                            <option value="male">男性</option>
-                            <option value="female">女性</option>
+                            <option value="" data-lang="option-select">请选择</option>
+                            <option value="male" data-lang="option-male">男性</option>
+                            <option value="female" data-lang="option-female">女性</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="age">年龄（岁）</label>
+                        <label for="age" data-lang="label-age">年龄（岁）</label>
                         <input type="number" id="age" name="age" min="1" max="120" required>
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="height">身高（厘米）</label>
+                        <label for="height" data-lang="label-height">身高（厘米）</label>
                         <input type="number" id="height" name="height" min="100" max="250" required>
                     </div>
                     <div class="form-group">
-                        <label for="weight">体重（公斤）</label>
+                        <label for="weight" data-lang="label-weight">体重（公斤）</label>
                         <input type="number" id="weight" name="weight" min="30" max="300" step="0.1" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="goal">健康目标</label>
+                    <label for="goal" data-lang="label-goal">健康目标</label>
                     <select id="goal" name="goal" required>
-                        <option value="">请选择您的目标</option>
-                        <option value="maintain_health">保持健康</option>
-                        <option value="maintain_shape">保持身材</option>
-                        <option value="lose_weight">减肥</option>
-                        <option value="gain_muscle">增肌</option>
-                        <option value="improve_fitness">提升体能</option>
+                        <option value="" data-lang="option-select-goal">请选择您的目标</option>
+                        <option value="maintain_health" data-lang="goal-maintain">保持健康</option>
+                        <option value="maintain_shape" data-lang="goal-shape">保持身材</option>
+                        <option value="lose_weight" data-lang="goal-lose">减肥</option>
+                        <option value="gain_muscle" data-lang="goal-muscle">增肌</option>
+                        <option value="improve_fitness" data-lang="goal-fitness">提升体能</option>
                     </select>
                 </div>
 
-                <button type="submit" class="submit-btn">获取个性化建议</button>
+                <button type="submit" class="submit-btn" data-lang="submit-btn">获取个性化建议</button>
             </form>
         </section>
 
         <section class="result-section" id="resultSection" style="display: none;">
-            <h2>您的健康报告</h2>
-            
+            <h2 data-lang="result-title">您的健康报告</h2>
+
             <div class="bmi-card">
-                <h3>身体质量指数（BMI）</h3>
+                <h3 data-lang="bmi-title">身体质量指数（BMI）</h3>
                 <div class="bmi-display">
                     <span id="bmiValue">--</span>
                     <span id="bmiCategory">--</span>
                 </div>
                 <div class="bmi-scale">
-                    <div class="scale-item underweight">偏瘦</div>
-                    <div class="scale-item normal">正常</div>
-                    <div class="scale-item overweight">超重</div>
-                    <div class="scale-item obese">肥胖</div>
+                    <div class="scale-item underweight" data-lang="bmi-underweight">偏瘦</div>
+                    <div class="scale-item normal" data-lang="bmi-normal">正常</div>
+                    <div class="scale-item overweight" data-lang="bmi-overweight">超重</div>
+                    <div class="scale-item obese" data-lang="bmi-obese">肥胖</div>
                 </div>
             </div>
 
             <div class="recommendations">
                 <div class="rec-card meal-plan-card">
-                    <h3>📅 一周食谱计划</h3>
+                    <h3 data-lang="meal-plan-title">📅 一周食谱计划</h3>
                     <div id="mealPlanRecommendations"></div>
                 </div>
 
                 <div class="rec-card sleep-card collapsible">
                     <button class="collapse-toggle">
-                        <h3>💤 睡眠建议</h3>
+                        <h3 data-lang="sleep-title">💤 睡眠建议</h3>
                         <span class="collapse-icon">▼</span>
                     </button>
                     <div class="collapse-content" id="sleepRecommendations"></div>
@@ -93,7 +105,7 @@
 
                 <div class="rec-card exercise-card collapsible">
                     <button class="collapse-toggle">
-                        <h3>🏋️ 运动建议</h3>
+                        <h3 data-lang="exercise-title">🏋️ 运动建议</h3>
                         <span class="collapse-icon">▼</span>
                     </button>
                     <div class="collapse-content" id="exerciseRecommendations"></div>
@@ -101,7 +113,7 @@
 
                 <div class="rec-card diet-card collapsible">
                     <button class="collapse-toggle">
-                        <h3>🥗 饮食建议</h3>
+                        <h3 data-lang="diet-title">🥗 饮食建议</h3>
                         <span class="collapse-icon">▼</span>
                     </button>
                     <div class="collapse-content" id="dietRecommendations"></div>
@@ -109,7 +121,7 @@
             </div>
 
             <div class="sources-section">
-                <h3>数据来源</h3>
+                <h3 data-lang="sources-title">数据来源</h3>
                 <ul id="sourcesList"></ul>
             </div>
         </section>
@@ -117,7 +129,9 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 健康顾问 | 基于世界卫生组织(WHO)、美国疾病控制与预防中心(CDC)等权威机构标准</p>
+            <p>Copyright © 2026 Li Chengyan. All Rights Reserved.</p>
+            <p class="footer-source" data-lang="footer-source">基于WHO、CDC、USDA、哈佛医学院、中国营养学会等权威机构标准提供健康建议</p>
+            <p class="version-info">v0.0.4 - <span data-lang="version-note">科学化食谱系统版本</span></p>
         </div>
     </footer>
 
