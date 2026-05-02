@@ -335,6 +335,48 @@ main {
     font-style: italic;
 }
 
+.collapsible {
+    position: relative;
+}
+
+.collapse-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    text-align: left;
+}
+
+.collapse-toggle h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.collapse-icon {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.collapse-toggle.active .collapse-icon {
+    transform: rotate(180deg);
+}
+
+.collapse-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.collapse-content.expanded {
+    max-height: 1000px;
+    padding-top: 15px;
+}
+
 footer {
     background: #333;
     color: white;

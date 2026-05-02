@@ -578,6 +578,22 @@ function renderSources() {
     });
 }
 
+function setupCollapse() {
+    const toggles = document.querySelectorAll('.collapse-toggle');
+    toggles.forEach(toggle => {
+        toggle.removeEventListener('click', toggleCollapse);
+        toggle.addEventListener('click', toggleCollapse);
+    });
+}
+
+function toggleCollapse() {
+    this.classList.toggle('active');
+    const content = this.nextElementSibling;
+    if (content) {
+        content.classList.toggle('expanded');
+    }
+}
+
 document.getElementById('healthForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -603,6 +619,8 @@ document.getElementById('healthForm').addEventListener('submit', function(e) {
     renderRecommendations('dietRecommendations', dietRecs);
     renderMealPlan(goal);
     renderSources();
+
+    setupCollapse();
 
     document.getElementById('resultSection').style.display = 'block';
     document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });

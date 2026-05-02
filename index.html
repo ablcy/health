@@ -78,24 +78,33 @@
             </div>
 
             <div class="recommendations">
-                <div class="rec-card sleep-card">
-                    <h3>💤 睡眠建议</h3>
-                    <div id="sleepRecommendations"></div>
-                </div>
-
-                <div class="rec-card exercise-card">
-                    <h3>🏋️ 运动建议</h3>
-                    <div id="exerciseRecommendations"></div>
-                </div>
-
-                <div class="rec-card diet-card">
-                    <h3>🥗 饮食建议</h3>
-                    <div id="dietRecommendations"></div>
-                </div>
-
                 <div class="rec-card meal-plan-card">
                     <h3>📅 一周食谱计划</h3>
                     <div id="mealPlanRecommendations"></div>
+                </div>
+
+                <div class="rec-card sleep-card collapsible">
+                    <button class="collapse-toggle">
+                        <h3>💤 睡眠建议</h3>
+                        <span class="collapse-icon">▼</span>
+                    </button>
+                    <div class="collapse-content" id="sleepRecommendations"></div>
+                </div>
+
+                <div class="rec-card exercise-card collapsible">
+                    <button class="collapse-toggle">
+                        <h3>🏋️ 运动建议</h3>
+                        <span class="collapse-icon">▼</span>
+                    </button>
+                    <div class="collapse-content" id="exerciseRecommendations"></div>
+                </div>
+
+                <div class="rec-card diet-card collapsible">
+                    <button class="collapse-toggle">
+                        <h3>🥗 饮食建议</h3>
+                        <span class="collapse-icon">▼</span>
+                    </button>
+                    <div class="collapse-content" id="dietRecommendations"></div>
                 </div>
             </div>
 
