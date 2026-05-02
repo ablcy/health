@@ -267,8 +267,95 @@ main {
 }
 
 .meal-plan-container {
-    max-height: 600px;
-    overflow-y: auto;
+    max-height: none;
+    overflow-y: visible;
+}
+
+.nutrition-summary {
+    background: linear-gradient(135deg, #4CAF50 0%, #2196F3 100%);
+    border-radius: 12px;
+    padding: 20px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.nutrition-summary h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+}
+
+.nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.nutrition-item {
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+}
+
+.nutrition-label {
+    display: block;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.nutrition-value {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.nutrition-source {
+    display: block;
+    font-size: 0.7rem;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+.calculation-method {
+    font-size: 0.8rem;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    line-height: 1.5;
+}
+
+.day-nutrition-total {
+    background: linear-gradient(135deg, #FF9800 0%, #F44336 100%);
+    border-radius: 12px;
+    padding: 20px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.day-nutrition-total h4 {
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+}
+
+.total-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.total-item {
+    background: rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.total-item strong {
+    display: block;
+    font-size: 1.2rem;
+    margin-top: 5px;
 }
 
 .weekday-tabs {
@@ -301,31 +388,73 @@ main {
     background: var(--bg-color);
     border-radius: 8px;
     padding: 15px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.meal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .meal-time {
     font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 10px;
-    font-size: 0.95rem;
+    font-size: 1rem;
+}
+
+.meal-subtotal {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    background: white;
+    padding: 5px 10px;
+    border-radius: 15px;
 }
 
 .meal-content {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+    display: grid;
+    gap: 10px;
 }
 
 .meal-item {
-    margin-bottom: 5px;
-    padding-left: 15px;
-    position: relative;
+    background: white;
+    border-radius: 8px;
+    padding: 12px;
+    border-left: 3px solid var(--primary-color);
 }
 
-.meal-item::before {
-    content: '•';
-    position: absolute;
-    left: 0;
+.food-name {
+    display: block;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 5px;
+}
+
+.food-detail {
+    display: block;
+    font-size: 0.85rem;
     color: var(--primary-color);
+    margin-bottom: 3px;
+}
+
+.food-source {
+    display: block;
+    font-size: 0.75rem;
+    color: #999;
+    font-style: italic;
+}
+
+.data-source-note {
+    font-size: 0.8rem;
+    color: #666;
+    text-align: center;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 15px;
 }
 
 .meal-notes {
@@ -394,12 +523,30 @@ footer p {
     .form-row {
         grid-template-columns: 1fr;
     }
-    
+
     header h1 {
         font-size: 1.8rem;
     }
-    
+
     #bmiValue {
         font-size: 3rem;
+    }
+
+    .nutrition-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .total-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .meal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .meal-subtotal {
+        font-size: 0.75rem;
     }
 }
