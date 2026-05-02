@@ -14,6 +14,264 @@ const SLEEP_RECOMMENDATIONS = {
     elderly_65_plus: { min: 7, max: 8, source: 'cdc' }
 };
 
+const MEAL_PLANS = {
+    lose_weight: {
+        monday: {
+            breakfast: ['1个水煮蛋', '1片全麦面包', '1杯无糖豆浆', '1个小苹果'],
+            lunch: ['1小碗杂粮饭', '100g鸡胸肉炒西兰花', '1份凉拌黄瓜'],
+            snack: ['1杯无糖酸奶', '几颗草莓'],
+            dinner: ['1小碗小米粥', '150g清蒸鱼', '1份蒜蓉油麦菜'],
+            notes: '晚餐尽量在18:30前完成'
+        },
+        tuesday: {
+            breakfast: ['1根玉米', '1个鸡蛋羹', '1杯脱脂牛奶'],
+            lunch: ['1小碗燕麦饭', '100g瘦牛肉炒青椒', '1份番茄炒蛋'],
+            snack: ['1根香蕉', '10颗杏仁'],
+            dinner: ['1小碗红薯粥', '150g水煮虾', '1份凉拌菠菜'],
+            notes: '中午可以适当增加蛋白质'
+        },
+        wednesday: {
+            breakfast: ['1个全麦馒头', '1个水煮蛋', '1杯无糖豆浆'],
+            lunch: ['1小碗糙米', '100g鸡胸肉沙拉', '1份凉拌番茄'],
+            snack: ['1杯无糖酸奶', '1个猕猴桃'],
+            dinner: ['1小碗杂粮粥', '150g清蒸鸡胸肉', '1份蒜蓉西兰花'],
+            notes: '沙拉酱选择油醋汁'
+        },
+        thursday: {
+            breakfast: ['1碗燕麦片', '1个鸡蛋', '几颗蓝莓'],
+            lunch: ['1小碗杂粮饭', '100g瘦猪肉炒芹菜', '1份凉拌海带丝'],
+            snack: ['1根黄瓜', '1个小番茄'],
+            dinner: ['1小碗小米饭', '150g红烧鸡胸肉', '1份清炒冬瓜'],
+            notes: '红烧用少量生抽和料酒'
+        },
+        friday: {
+            breakfast: ['1个鸡蛋三明治(全麦面包)', '1杯脱脂牛奶'],
+            lunch: ['1小碗藜麦饭', '100g三文鱼', '1份凉拌黄瓜'],
+            snack: ['1个橙子', '10颗核桃'],
+            dinner: ['1小碗白粥', '150g水煮蛋', '1份蒜蓉菠菜'],
+            notes: '周五可以适当放松，但注意控制量'
+        },
+        saturday: {
+            breakfast: ['1根紫薯', '1个鸡蛋羹', '1杯无糖豆浆'],
+            lunch: ['1小碗糙米', '100g烤鸡胸肉', '1份凉拌番茄'],
+            snack: ['1杯无糖酸奶', '1个苹果'],
+            dinner: ['1小碗杂粮粥', '150g清蒸鲈鱼', '1份清炒西兰花'],
+            notes: '周末也要保持规律饮食'
+        },
+        sunday: {
+            breakfast: ['1个全麦包子', '1个水煮蛋', '1杯小米粥'],
+            lunch: ['1小碗燕麦饭', '100g炒虾仁', '1份凉拌黄瓜'],
+            snack: ['1根香蕉', '1杯无糖酸奶'],
+            dinner: ['1小碗白粥', '150g鸡胸肉炒木耳', '1份蒜蓉油麦菜'],
+            notes: '准备迎接新的一周'
+        }
+    },
+    gain_muscle: {
+        monday: {
+            breakfast: ['3个水煮蛋', '2片全麦面包', '1杯全脂牛奶', '1根香蕉'],
+            lunch: ['1大碗杂粮饭', '200g鸡胸肉炒西兰花', '1份番茄炒蛋', '1碗豆腐汤'],
+            snack: ['1杯蛋白粉', '1个苹果', '20颗杏仁'],
+            dinner: ['1大碗糙米', '200g清蒸鱼', '1份蒜蓉菠菜', '1个水煮蛋'],
+            notes: '训练后30分钟内补充蛋白质'
+        },
+        tuesday: {
+            breakfast: ['2个鸡蛋', '1根玉米', '1杯全脂牛奶', '1个橙子'],
+            lunch: ['1大碗燕麦饭', '200g瘦牛肉炒青椒', '1份凉拌黄瓜', '1碗紫菜蛋花汤'],
+            snack: ['1杯酸奶', '1根香蕉', '10颗核桃'],
+            dinner: ['1大碗小米饭', '200g水煮虾', '1份蒜蓉西兰花', '1个鸡蛋'],
+            notes: '每餐蛋白质要充足'
+        },
+        wednesday: {
+            breakfast: ['3个鸡蛋羹', '1个全麦馒头', '1杯豆浆'],
+            lunch: ['1大碗糙米', '200g鸡胸肉沙拉', '1份凉拌番茄', '1碗鸡汤'],
+            snack: ['1杯蛋白粉', '1个猕猴桃', '15颗杏仁'],
+            dinner: ['1大碗杂粮饭', '200g红烧牛肉', '1份清炒菠菜', '1个鸡蛋'],
+            notes: '沙拉酱选择蛋黄酱增加热量'
+        },
+        thursday: {
+            breakfast: ['2个水煮蛋', '1碗燕麦片', '1杯全脂牛奶'],
+            lunch: ['1大碗杂粮饭', '200g瘦猪肉炒芹菜', '1份凉拌海带丝', '1碗排骨汤'],
+            snack: ['1杯酸奶', '1根香蕉', '20颗花生'],
+            dinner: ['1大碗小米饭', '200g清蒸鸡胸肉', '1份蒜蓉西兰花', '1个鸡蛋'],
+            notes: '多喝水促进代谢'
+        },
+        friday: {
+            breakfast: ['3个鸡蛋', '2片全麦面包', '1杯全脂牛奶'],
+            lunch: ['1大碗藜麦饭', '200g三文鱼', '1份凉拌黄瓜', '1碗豆腐汤'],
+            snack: ['1杯蛋白粉', '1个橙子', '10颗核桃'],
+            dinner: ['1大碗白米饭', '200g炒虾仁', '1份番茄炒蛋', '1个鸡蛋'],
+            notes: '周五可以适当增加碳水'
+        },
+        saturday: {
+            breakfast: ['2个鸡蛋', '1根紫薯', '1杯豆浆', '1个苹果'],
+            lunch: ['1大碗糙米', '200g烤鸡胸肉', '1份凉拌番茄', '1碗牛肉汤'],
+            snack: ['1杯酸奶', '1根香蕉', '15颗杏仁'],
+            dinner: ['1大碗杂粮饭', '200g清蒸鲈鱼', '1份清炒西兰花', '1个鸡蛋'],
+            notes: '周末可以适当加餐'
+        },
+        sunday: {
+            breakfast: ['3个水煮蛋', '1个全麦包子', '1杯小米粥'],
+            lunch: ['1大碗燕麦饭', '200g炒虾仁', '1份凉拌黄瓜', '1碗鸡汤'],
+            snack: ['1杯蛋白粉', '1个橙子', '20颗杏仁'],
+            dinner: ['1大碗白米饭', '200g鸡胸肉炒木耳', '1份蒜蓉油麦菜', '1个鸡蛋'],
+            notes: '准备迎接新的一周'
+        }
+    },
+    maintain_health: {
+        monday: {
+            breakfast: ['1个水煮蛋', '1片全麦面包', '1杯牛奶', '1个苹果'],
+            lunch: ['1小碗米饭', '100g瘦肉', '1份蔬菜', '1碗汤'],
+            snack: ['1杯酸奶', '几颗草莓'],
+            dinner: ['1小碗米饭', '150g鱼', '1份绿叶蔬菜'],
+            notes: '保持均衡饮食'
+        },
+        tuesday: {
+            breakfast: ['1根玉米', '1个鸡蛋', '1杯豆浆'],
+            lunch: ['1小碗米饭', '100g鸡胸肉', '1份番茄炒蛋', '1份凉拌黄瓜'],
+            snack: ['1根香蕉', '10颗杏仁'],
+            dinner: ['1小碗米饭', '150g虾', '1份蒜蓉菠菜'],
+            notes: '注意蔬菜的摄入量'
+        },
+        wednesday: {
+            breakfast: ['1个鸡蛋羹', '1个馒头', '1杯牛奶'],
+            lunch: ['1小碗米饭', '100g瘦牛肉', '1份西兰花', '1碗汤'],
+            snack: ['1杯酸奶', '1个猕猴桃'],
+            dinner: ['1小碗杂粮粥', '150g清蒸鱼', '1份凉拌黄瓜'],
+            notes: '晚餐不要吃得太饱'
+        },
+        thursday: {
+            breakfast: ['1碗燕麦片', '1个鸡蛋', '几颗蓝莓'],
+            lunch: ['1小碗米饭', '100g瘦猪肉', '1份芹菜', '1份凉拌海带'],
+            snack: ['1个小番茄', '1根黄瓜'],
+            dinner: ['1小碗米饭', '150g鸡胸肉', '1份蒜蓉油麦菜'],
+            notes: '多喝水'
+        },
+        friday: {
+            breakfast: ['1个鸡蛋三明治', '1杯牛奶'],
+            lunch: ['1小碗米饭', '100g三文鱼', '1份蔬菜沙拉', '1碗汤'],
+            snack: ['1个橙子', '10颗核桃'],
+            dinner: ['1小碗白粥', '150g鸡蛋', '1份菠菜'],
+            notes: '周末前保持规律'
+        },
+        saturday: {
+            breakfast: ['1根紫薯', '1个鸡蛋', '1杯豆浆'],
+            lunch: ['1小碗米饭', '100g烤鸡肉', '1份凉拌番茄', '1碗汤'],
+            snack: ['1杯酸奶', '1个苹果'],
+            dinner: ['1小碗杂粮粥', '150g鲈鱼', '1份西兰花'],
+            notes: '周末可以适当放松'
+        },
+        sunday: {
+            breakfast: ['1个包子', '1个鸡蛋', '1杯小米粥'],
+            lunch: ['1小碗米饭', '100g虾仁', '1份黄瓜', '1碗鸡汤'],
+            snack: ['1根香蕉', '1杯酸奶'],
+            dinner: ['1小碗米饭', '150g鸡胸肉', '1份油麦菜'],
+            notes: '准备新一周'
+        }
+    },
+    maintain_shape: {
+        monday: {
+            breakfast: ['1个水煮蛋', '1片全麦面包', '1杯无糖豆浆', '1个小苹果'],
+            lunch: ['1小碗杂粮饭', '100g鸡胸肉', '1份蔬菜', '1碗豆腐汤'],
+            snack: ['1杯无糖酸奶', '几颗草莓'],
+            dinner: ['1小碗小米粥', '150g清蒸鱼', '1份蒜蓉菠菜'],
+            notes: '控制碳水化合物摄入'
+        },
+        tuesday: {
+            breakfast: ['1根玉米', '1个鸡蛋', '1杯脱脂牛奶'],
+            lunch: ['1小碗燕麦饭', '100g瘦牛肉', '1份番茄炒蛋', '1份凉拌黄瓜'],
+            snack: ['1根香蕉', '10颗杏仁'],
+            dinner: ['1小碗红薯粥', '150g水煮虾', '1份凉拌菠菜'],
+            notes: '保持蛋白质摄入'
+        },
+        wednesday: {
+            breakfast: ['1个鸡蛋羹', '1个全麦馒头', '1杯豆浆'],
+            lunch: ['1小碗糙米', '100g鸡胸肉沙拉', '1份凉拌番茄'],
+            snack: ['1杯无糖酸奶', '1个猕猴桃'],
+            dinner: ['1小碗杂粮粥', '150g清蒸鸡胸肉', '1份蒜蓉西兰花'],
+            notes: '少油少盐'
+        },
+        thursday: {
+            breakfast: ['1碗燕麦片', '1个鸡蛋', '几颗蓝莓'],
+            lunch: ['1小碗杂粮饭', '100g瘦猪肉', '1份芹菜', '1份凉拌海带'],
+            snack: ['1个小番茄', '1根黄瓜'],
+            dinner: ['1小碗小米饭', '150g红烧鸡胸肉', '1份清炒冬瓜'],
+            notes: '红烧用少量油'
+        },
+        friday: {
+            breakfast: ['1个鸡蛋三明治', '1杯脱脂牛奶'],
+            lunch: ['1小碗藜麦饭', '100g三文鱼', '1份凉拌黄瓜'],
+            snack: ['1个橙子', '10颗核桃'],
+            dinner: ['1小碗白粥', '150g水煮蛋', '1份菠菜'],
+            notes: '周五可以适当放松'
+        },
+        saturday: {
+            breakfast: ['1根紫薯', '1个鸡蛋', '1杯无糖豆浆'],
+            lunch: ['1小碗糙米', '100g烤鸡胸肉', '1份凉拌番茄'],
+            snack: ['1杯无糖酸奶', '1个苹果'],
+            dinner: ['1小碗杂粮粥', '150g清蒸鲈鱼', '1份西兰花'],
+            notes: '周末也要注意饮食'
+        },
+        sunday: {
+            breakfast: ['1个全麦包子', '1个鸡蛋', '1杯小米粥'],
+            lunch: ['1小碗燕麦饭', '100g虾仁', '1份黄瓜'],
+            snack: ['1根香蕉', '1杯无糖酸奶'],
+            dinner: ['1小碗白粥', '150g鸡胸肉', '1份油麦菜'],
+            notes: '准备新一周'
+        }
+    },
+    improve_fitness: {
+        monday: {
+            breakfast: ['2个水煮蛋', '1片全麦面包', '1杯牛奶', '1根香蕉'],
+            lunch: ['1大碗米饭', '150g鸡胸肉', '1份蔬菜', '1碗汤'],
+            snack: ['1杯蛋白粉', '1个苹果'],
+            dinner: ['1大碗米饭', '150g鱼', '1份绿叶蔬菜'],
+            notes: '训练日增加碳水'
+        },
+        tuesday: {
+            breakfast: ['1根玉米', '2个鸡蛋', '1杯豆浆'],
+            lunch: ['1大碗米饭', '150g瘦牛肉', '1份番茄炒蛋', '1份凉拌黄瓜'],
+            snack: ['1杯酸奶', '1根香蕉'],
+            dinner: ['1小碗米饭', '150g虾', '1份蒜蓉菠菜'],
+            notes: '非训练日保持均衡'
+        },
+        wednesday: {
+            breakfast: ['2个鸡蛋羹', '1个馒头', '1杯牛奶'],
+            lunch: ['1大碗米饭', '150g鸡胸肉', '1份西兰花', '1碗汤'],
+            snack: ['1杯蛋白粉', '1个猕猴桃'],
+            dinner: ['1小碗杂粮粥', '150g清蒸鱼', '1份凉拌黄瓜'],
+            notes: '训练日注意恢复'
+        },
+        thursday: {
+            breakfast: ['1碗燕麦片', '2个鸡蛋', '几颗蓝莓'],
+            lunch: ['1大碗米饭', '150g瘦猪肉', '1份芹菜', '1份凉拌海带'],
+            snack: ['1个小番茄', '1根黄瓜'],
+            dinner: ['1大碗米饭', '150g鸡胸肉', '1份蒜蓉油麦菜'],
+            notes: '保持水分摄入'
+        },
+        friday: {
+            breakfast: ['2个鸡蛋', '2片全麦面包', '1杯牛奶'],
+            lunch: ['1大碗米饭', '150g三文鱼', '1份蔬菜沙拉', '1碗汤'],
+            snack: ['1杯蛋白粉', '1个橙子'],
+            dinner: ['1小碗白粥', '150g鸡蛋', '1份菠菜'],
+            notes: '周末前适当放松'
+        },
+        saturday: {
+            breakfast: ['1根紫薯', '2个鸡蛋', '1杯豆浆'],
+            lunch: ['1大碗米饭', '150g烤鸡肉', '1份凉拌番茄', '1碗汤'],
+            snack: ['1杯酸奶', '1个苹果'],
+            dinner: ['1小碗杂粮粥', '150g鲈鱼', '1份西兰花'],
+            notes: '周末可以进行户外活动'
+        },
+        sunday: {
+            breakfast: ['1个包子', '2个鸡蛋', '1杯小米粥'],
+            lunch: ['1大碗米饭', '150g虾仁', '1份黄瓜', '1碗鸡汤'],
+            snack: ['1根香蕉', '1杯酸奶'],
+            dinner: ['1小碗米饭', '150g鸡胸肉', '1份油麦菜'],
+            notes: '休息好准备新一周'
+        }
+    }
+};
+
 function calculateBMI(weight, height) {
     const heightInMeters = height / 100;
     return (weight / (heightInMeters * heightInMeters)).toFixed(1);
@@ -31,6 +289,10 @@ function getAgeGroup(age) {
     if (age >= 14 && age <= 17) return 'teen_14_17';
     if (age >= 18 && age <= 64) return 'adult_18_64';
     return 'elderly_65_plus';
+}
+
+function getGoalKey(goal) {
+    return goal || 'maintain_health';
 }
 
 function generateSleepRecommendations(age, goal) {
@@ -207,6 +469,68 @@ function generateDietRecommendations(gender, age, weight, height, bmi, goal) {
     return recommendations;
 }
 
+function renderMealPlan(goal) {
+    const container = document.getElementById('mealPlanRecommendations');
+    const goalKey = getGoalKey(goal);
+    const mealPlan = MEAL_PLANS[goalKey] || MEAL_PLANS.maintain_health;
+    
+    const weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    const weekdayNames = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+    
+    container.innerHTML = `
+        <div class="meal-plan-container">
+            <div class="weekday-tabs">
+                ${weekdays.map((day, index) => `<div class="weekday-tab" data-day="${day}">${weekdayNames[index]}</div>`).join('')}
+            </div>
+            <div class="day-meals" id="dayMeals">
+                ${renderDayMeals(mealPlan.monday)}
+            </div>
+        </div>
+    `;
+
+    const tabs = container.querySelectorAll('.weekday-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const day = tab.dataset.day;
+            document.getElementById('dayMeals').innerHTML = renderDayMeals(mealPlan[day]);
+        });
+    });
+    
+    tabs[0].classList.add('active');
+}
+
+function renderDayMeals(dayPlan) {
+    return `
+        <div class="meal-block">
+            <div class="meal-time">🌅 早餐</div>
+            <div class="meal-content">
+                ${dayPlan.breakfast.map(item => `<div class="meal-item">${item}</div>`).join('')}
+            </div>
+        </div>
+        <div class="meal-block">
+            <div class="meal-time">☀️ 午餐</div>
+            <div class="meal-content">
+                ${dayPlan.lunch.map(item => `<div class="meal-item">${item}</div>`).join('')}
+            </div>
+        </div>
+        <div class="meal-block">
+            <div class="meal-time">🍎 加餐</div>
+            <div class="meal-content">
+                ${dayPlan.snack.map(item => `<div class="meal-item">${item}</div>`).join('')}
+            </div>
+        </div>
+        <div class="meal-block">
+            <div class="meal-time">🌙 晚餐</div>
+            <div class="meal-content">
+                ${dayPlan.dinner.map(item => `<div class="meal-item">${item}</div>`).join('')}
+            </div>
+            <div class="meal-notes">💡 ${dayPlan.notes}</div>
+        </div>
+    `;
+}
+
 function renderRecommendations(containerId, recommendations) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
@@ -257,6 +581,7 @@ document.getElementById('healthForm').addEventListener('submit', function(e) {
     renderRecommendations('sleepRecommendations', sleepRecs);
     renderRecommendations('exerciseRecommendations', exerciseRecs);
     renderRecommendations('dietRecommendations', dietRecs);
+    renderMealPlan(goal);
     renderSources();
 
     document.getElementById('resultSection').style.display = 'block';

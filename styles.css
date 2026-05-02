@@ -206,6 +206,7 @@ main {
 .sleep-card { border-left-color: #66BB6A; }
 .exercise-card { border-left-color: #42A5F5; }
 .diet-card { border-left-color: #FFA726; }
+.meal-plan-card { border-left-color: #9C27B0; }
 
 .rec-item {
     background: var(--bg-color);
@@ -262,6 +263,75 @@ main {
 
 .sources-section li:last-child {
     border-bottom: none;
+}
+
+.meal-plan-container {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.weekday-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.weekday-tab {
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: var(--bg-color);
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+}
+
+.weekday-tab.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+.day-meals {
+    display: grid;
+    gap: 15px;
+}
+
+.meal-block {
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.meal-time {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.meal-content {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.meal-item {
+    margin-bottom: 5px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.meal-item::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.meal-notes {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 10px;
+    font-style: italic;
 }
 
 footer {
