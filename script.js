@@ -477,56 +477,76 @@ function renderMealPlan(goal) {
     const weekdays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
     const weekdayNames = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
     
-    container.innerHTML = `
+    let tabsHtml = '';
+    for (let i = 0; i < weekdays.length; i++) {
+        tabsHtml += '<div class="weekday-tab" data-day="' + weekdays[i] + '">' + weekdayNames[i] + '</div>';
+    }
+    
+    const contentHtml = `
         <div class="meal-plan-container">
             <div class="weekday-tabs">
-                ${weekdays.map((day, index) => `<div class="weekday-tab" data-day="${day}">${weekdayNames[index]}</div>`).join('')}
+                ${tabsHtml}
             </div>
             <div class="day-meals" id="dayMeals">
                 ${renderDayMeals(mealPlan.monday)}
             </div>
         </div>
     `;
+    
+    container.innerHTML = contentHtml;
 
     const tabs = container.querySelectorAll('.weekday-tab');
     tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
+        tab.addEventListener('click', function() {
             tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            const day = tab.dataset.day;
+            this.classList.add('active');
+            const day = this.dataset.day;
             document.getElementById('dayMeals').innerHTML = renderDayMeals(mealPlan[day]);
         });
     });
     
-    tabs[0].classList.add('active');
+    if (tabs.length > 0) {
+        tabs[0].classList.add('active');
+    }
 }
 
 function renderDayMeals(dayPlan) {
+    if (!dayPlan || typeof dayPlan !== 'object') {
+        return '<div style="color:red;">无法加载食谱数据</div>';
+    }
+    
+    const renderMealItems = (items) => {
+        if (!items || !Array.isArray(items)) {
+            return '<div class="meal-item">暂无数据</div>';
+        }
+        return items.map(item => `<div class="meal-item">${item}</div>`).join('');
+    };
+    
     return `
         <div class="meal-block">
             <div class="meal-time">🌅 早餐</div>
             <div class="meal-content">
-                ${dayPlan.breakfast.map(item => `<div class="meal-item">${item}</div>`).join('')}
+                ${renderMealItems(dayPlan.breakfast)}
             </div>
         </div>
         <div class="meal-block">
             <div class="meal-time">☀️ 午餐</div>
             <div class="meal-content">
-                ${dayPlan.lunch.map(item => `<div class="meal-item">${item}</div>`).join('')}
+                ${renderMealItems(dayPlan.lunch)}
             </div>
         </div>
         <div class="meal-block">
             <div class="meal-time">🍎 加餐</div>
             <div class="meal-content">
-                ${dayPlan.snack.map(item => `<div class="meal-item">${item}</div>`).join('')}
+                ${renderMealItems(dayPlan.snack)}
             </div>
         </div>
         <div class="meal-block">
             <div class="meal-time">🌙 晚餐</div>
             <div class="meal-content">
-                ${dayPlan.dinner.map(item => `<div class="meal-item">${item}</div>`).join('')}
+                ${renderMealItems(dayPlan.dinner)}
             </div>
-            <div class="meal-notes">💡 ${dayPlan.notes}</div>
+            <div class="meal-notes">💡 ${dayPlan.notes || '暂无提示'}</div>
         </div>
     `;
 }
